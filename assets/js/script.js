@@ -9,17 +9,24 @@ var password = "";
 var generatePassword = function () {
   //prompt for length of password.
 
-  var charNumber = window.prompt("How many characters should the password include? (must be between 8-128)")
+  var charNumber = window.prompt("What is the desired length of the password? (must be between 8-128 characters)")
 
   //Loop until # of characters selected is between 8 and 128
+  // typeof != 'number'
   if (charNumber < 8 || charNumber > 128) {
     window.alert("Please add valid number of characters")
     return generatePassword();
   }
 
-
-
   //prompt for character types to include in password. 
+  var includeUpper = window.confirm("Would you like to include uppercase letter?");
+
+  if (includeUpper) {
+    password = uppercase[Math.floor(Math.random() * uppercase.length)];
+    all += uppercase;
+    console.log(all)
+  }
+
 
   //add all characters from selected arrays to 'all' array
 
@@ -28,7 +35,7 @@ var generatePassword = function () {
   //pull random characters from 'all' array until number of characters complete
 
   //return password
-  return charNumber
+  return all
 
 }
 
