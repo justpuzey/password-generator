@@ -3,7 +3,8 @@ var specialChar = ["!", ",", "\”", "#", "$", "%", "&", "’", "(", ")", "*", "
 var lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var numeric = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-var all = [];
+var allIncluded = [];
+var includedCount = 0;
 var password = "";
 
 var generatePassword = function () {
@@ -41,23 +42,18 @@ var generatePassword = function () {
 
   function includeType(passedArray) {
     password += passedArray[Math.floor(Math.random() * passedArray.length)]; //include at least 1 character in password
-    all += passedArray; //if type is include, add all characters to array for further inclusion
+    allIncluded += passedArray; //if type is include, add all characters to array for further inclusion
+    includedCount++;
   }
 
-
-  //add all characters from selected arrays to 'all' array
-
-  //pull 1 random from each selected type and add to generated password
-
-  //pull random characters from 'all' array until number of characters complete
-
+  //populate remaining characters in password using random selections from 'allIncluded' array
+  for (i = includedCount; i < charNumber; i++) {
+    password += allIncluded[Math.floor(Math.random() * allIncluded.length)];
+  }
   //return password
   return password
 
 }
-
-
-
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
