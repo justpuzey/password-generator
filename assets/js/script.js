@@ -20,11 +20,28 @@ var generatePassword = function () {
 
   //prompt for character types to include in password. 
   var includeUpper = window.confirm("Would you like to include uppercase letter?");
-
   if (includeUpper) {
-    password = uppercase[Math.floor(Math.random() * uppercase.length)];
-    all += uppercase;
-    console.log(all)
+    includeType(uppercase);
+  }
+
+  var includeLower = window.confirm("Would you like to include lowercase letter?");
+  if (includeLower) {
+    includeType(lowercase);
+  }
+
+  var includenumeric = window.confirm("Would you like to include numbers?");
+  if (includenumeric) {
+    includeType(numeric);
+  }
+
+  var includeSpecial = window.confirm("Would you like to include special characters?");
+  if (includeSpecial) {
+    includeType(specialChar);
+  }
+
+  function includeType(passedArray) {
+    password += passedArray[Math.floor(Math.random() * passedArray.length)]; //include at least 1 character in password
+    all += passedArray; //if type is include, add all characters to array for further inclusion
   }
 
 
@@ -35,7 +52,7 @@ var generatePassword = function () {
   //pull random characters from 'all' array until number of characters complete
 
   //return password
-  return all
+  return password
 
 }
 
